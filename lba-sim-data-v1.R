@@ -28,7 +28,7 @@ generate_rts <- function(max_start_point, mean_drift_rates, sd_drift_rates, thre
     n_responses = length(mean_drift_rates)
     
     #sample starting point from uniform distribution bounded between 0 and the max starting point
-    start_point = runif(n=1,min=0,max=max_start_point)
+    start_points = runif(n=2,min=0,max=max_start_point)
     
     #sample drift rates for each accumulator from normal distribution.
     #need to ensure at least one drift rate is positive, because otherwise the response time is infinite
@@ -49,7 +49,7 @@ generate_rts <- function(max_start_point, mean_drift_rates, sd_drift_rates, thre
     
     #calculate evidence required to reach threshold. This is just the difference between the raw_threshold
     #and the randomly sampled starting point
-    evidence_required = raw_threshold - start_point
+    evidence_required = raw_threshold - start_points
     
     #calculate time required for each acculator to reach threshold by dividing the evidence required 
     #(i.e. the distance) by the rate of evidence accumulation
